@@ -106,7 +106,6 @@
             <description>The base files</description>
             <file src="doc/Readme.txt" targetdir="$INSTALL_PATH/doc"/>
             <file src="doc/Licence.txt" targetdir="$INSTALL_PATH/doc"/>
-            <file src="script.bat" targetdir="$INSTALL_PATH"/>
 			<file src="qanban-standalone.war" targetdir="$INSTALL_PATH"/>
 			<file src="startQanban.sh" targetdir="$INSTALL_PATH"/>
 			<file src="startQanban.bat" targetdir="$INSTALL_PATH"/>
@@ -115,8 +114,6 @@
 			<!-- Icons -->
 			<file src="icons/start_qanban.png" targetdir="$INSTALL_PATH/icons"/>			
 			<file src="icons/uninstall.png" targetdir="$INSTALL_PATH/icons"/>			
-            <!--parsable targetfile="$INSTALL_PATH/script.bat"/-->
-            <!-- The file will be parsed -->
         </pack>
         <pack name="Docs" required="no">
             <description>The documentation</description>
