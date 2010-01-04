@@ -1,6 +1,9 @@
 This is a desktop installer for Qanban.
 
 Usage:
+To just use it - Run the install.jar file
+
+To make your own build:
 Install IzPack (http://izpack.org/) and set it up with correct paths.
 "compile install.xml"
 Run the install.jar file
