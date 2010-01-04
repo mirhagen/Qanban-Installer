@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<installation version="1.0">
+
+    <!-- 
+        The info section.
+        The meaning of the tags should be natural ...
+    -->
+    <info>
+        <appname>Qanban</appname>
+        <appversion>0.1</appversion>
+        <authors>
+            <author name="Mattias Mirhagen" email="mattias.mirhagen@qbranch.se"/>
+            <author name="Patrik Gärdeman" email="patrik.gardeman@qbranch.se"/>
+            <author name="Leonard Axelsson" email="leonard.axelsson@qbranch.se"/>
+        </authors>
+        <url>http://code.qbranch.se/post/listTag?selectedTag=qanban</url>
+		<requiresjdk>yes</requiresjdk>
+    </info>
+
+	<conditions> 
+       <condition id="configure.advanced" type="variable"> 
+                <name>config.type</name> 
+                <value>advanced</value> 
+        </condition> 
+	</conditions>
+
+	<dynamicvariables> 
+	    <!-- Default settings. --> 
+	    <variable name="http.port.default" value="8080" /> 
+		<variable name="memory.default" value="512" />
+	    <!-- Installation settings: either the default ones or the user ones. --> 
+	    <variable name="http.port" value="${http.port.user}" 
+			condition="configure.advanced" /> 
+	    <variable name="http.port" value="${http.port.default}" 
+			condition="!configure.advanced" /> 
+	    <variable name="memory" value="${memory.user}" 
+			condition="configure.advanced" /> 
+	    <variable name="memory" value="${memory.default}" 
+			condition="!configure.advanced" /> 
+	</dynamicvariables> 
+
+	<variables>
+		<variable name="app-version" value="0.1"/>
+		<variable name="released-on" value="2009/12/18"/>
+		<variable name="DesktopShortcutCheckboxEnabled" value="true"/>
+	</variables>
+    <!-- 
+        The gui preferences indication.
+        Sets the installer window to 640x480. It will not be able to change the size.
+    -->
+    <guiprefs width="640" height="480" resizable="yes"/>
+
+    <!-- 
+        The locale section.
+        Asks here to include the English langpacks.
+    -->
+    <locale>
+        <langpack iso3="eng"/>
+    </locale>
+
+    <!-- 
+        The resources section.
+        The ids must be these ones if you want to use the LicencePanel and/or the InfoPanel.
+    -->
+    <resources>
+        <res id="LicencePanel.licence" src="doc/Licence.txt"/>
+        <res id="InfoPanel.info" src="doc/Readme.txt"/>
+		<!-- Set the default installation directory shown in the TargetPanel -->
+	    <res id="TargetPanel.dir" src="TargetDir.txt" />
+		<res id="userInputSpec.xml" src="userInputSpec.xml" />
+		<!-- Windows shortcuts -->
+        <res id="shortcutSpec.xml" src="shortcutSpec.xml" />
+		<!-- Linux shortcuts -->
+        <res id="Unix_shortcutSpec.xml" src="Unix_shortcutSpec.xml"/>
+    </resources>
+
+    <!-- 
+        The panels section.
+        We indicate here which panels we want to use. The order will be respected.
+    -->
+    <panels>
+        <panel classname="HelloPanel"/>
+        <panel classname="InfoPanel"/>
+        <panel classname="LicencePanel"/>
+        <panel classname="TargetPanel"/>
+        <panel classname="PacksPanel"/>
+		<!-- Typical/advanced. --> 
+        <panel classname="UserInputPanel" id="choose" />
+		<!-- HTTP configuration. --> 
+        <panel classname="UserInputPanel" id="conf.http" condition="configure.advanced" /> 
+		<panel classname="ShortcutPanel"/>
+        <panel classname="InstallPanel"/>
+        <panel classname="FinishPanel"/>
+    </panels>
+
+	<!-- for windows -->
+	<native type="izpack" name="ShellLink.dll"/>
+
+    <!-- 
+        The packs section.
+        We specify here our packs.
+    -->
+    <packs>
+        <pack name="Base" required="yes">
+            <description>The base files</description>
+            <file src="doc/Readme.txt" targetdir="$INSTALL_PATH/doc"/>
+            <file src="doc/Licence.txt" targetdir="$INSTALL_PATH/doc"/>
+            <file src="script.bat" targetdir="$INSTALL_PATH"/>
+			<file src="qanban-standalone.war" targetdir="$INSTALL_PATH"/>
+			<file src="startQanban.sh" targetdir="$INSTALL_PATH"/>
+			<file src="startQanban.bat" targetdir="$INSTALL_PATH"/>
+			<executable targetfile="$INSTALL_PATH/startQanban.sh" stage="never"/>
+			<executable targetfile="$INSTALL_PATH/startQanban.bat" stage="never"/>
+			<!-- Icons -->
+			<file src="icons/start_qanban.png" targetdir="$INSTALL_PATH/icons"/>			
+			<file src="icons/uninstall.png" targetdir="$INSTALL_PATH/icons"/>			
+            <!--parsable targetfile="$INSTALL_PATH/script.bat"/-->
+            <!-- The file will be parsed -->
+        </pack>
+        <pack name="Docs" required="no">
+            <description>The documentation</description>
+            <file src="doc" targetdir="$INSTALL_PATH"/>
+            <!-- Reccursive adding -->
+        </pack>
+        <pack name="Sources" required="no">
+            <description>The sources</description>
+            <file src="src" targetdir="$INSTALL_PATH"/>
+        </pack>
+    </packs>
+
+</installation>

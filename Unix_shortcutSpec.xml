@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<shortcuts>
+	<skipIfNotSupported/>
+	<programGroup defaultName="Qanban"
+            location="applications"/>
+	<shortcut
+		name="Qanban"
+		target="sh"
+		commandLine="$INSTALL_PATH/startQanban.sh $http.port $memory"
+		description="Launch Qanban"
+		workingDirectory="$INSTALL_PATH"
+    	iconFile="$INSTALL_PATH/icons/start_qanban.png"
+	    iconIndex="0"
+		initialState="normal"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		type="Application"
+		terminal="true"
+		encoding="UTF-8">
+
+	</shortcut>
+
+	<shortcut
+		name="Uninstall Qanban"
+		target="$JAVA_HOME/bin/java"
+		commandLine="-jar $INSTALL_PATH/Uninstaller/uninstaller.jar"
+		description="Uninstall Qanban"
+		workingDirectory="$INSTALL_PATH"
+    	iconFile="$INSTALL_PATH/icons/uninstall.png"
+	    iconIndex="0"
+		initialState="normal"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		type="Application"
+		terminal="false"
+		encoding="UTF-8">
+
+	</shortcut>
+
+</shortcuts>
+

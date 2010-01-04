@@ -1,0 +1,22 @@
+<userInput> 
+        <panel order="0"> 
+                <field type="radio" variable="config.type"> 
+                        <spec> 
+                                <choice txt="Typical" value="typical" set="true" /> 
+                                <choice txt="Advanced" value="advanced" /> 
+                        </spec> 
+                </field> 
+        </panel> 
+        <panel order="1"> 
+                <field type="rule" align="left" variable="http.port.user"> 
+                        <spec txt="Qanban port:" size="5" set="0:${http.port.default}" layout="N:5:5" /> 
+                        <validator class="com.izforge.izpack.util.RegularExpressionValidator" txt="Invalid 
+										port number; must be in the range 0..65535"> 
+                                <param name="pattern" value="^(6553[0-5]|655[0-2]\d|65[0-4]\d\d|6[0-4]\d{3}|[1-5]\d{4}|[1-9]\d{0,3}|0)$" /> 
+                        </validator> 
+                </field> 
+                <field type="rule" align="left" variable="memory.user"> 
+                        <spec txt="Qanban memory:" size="5" set="0:${memory.default}" layout="N:5:5" /> 
+                </field> 
+        </panel> 
+</userInput> 
